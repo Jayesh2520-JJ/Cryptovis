@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoVis | Visual Cryptography Playground</title>
+    
+    <style>
+        /* --- 1. General Resets & Typography --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0f1f; /* Deep dark cyberpunk blue */
+            color: #e0e0e0; /* Light gray text */
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            color: #00ff88; /* NEON GREEN accent */
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5); /* Glow effect */
+        }
+
+        /* --- 2. Navigation Bar --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: #1a1f2b;
+            border-bottom: 1px solid #00ff8840;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+
+        /* --- 3. Hero Section --- */
+        .hero-section {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* Background image with dark overlay */
+            background: linear-gradient(rgba(10, 15, 31, 0.8), rgba(10, 15, 31, 0.8)),
+                        url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* The CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: #0a0f1f;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
+        }
+
+        /* --- 4. Features Section --- */
+        .features-section {
+            padding: 5rem 0;
+            background-color: #121726;
+        }
+
+        .features-section .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background-color: #1a1f2b;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #ffffff10;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #00ff88;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* --- 5. Footer --- */
+        footer {
+            background-color: #1a1f2b;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        footer a {
+            color: #00ff88;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Crypto<span class="highlight">Vis</span></div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="https://github.com/YOUR-USERNAME/CryptoVis" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+        </ul>
+    </nav>
+
+    <header id="hero" class="hero-section">
+        <div class="hero-content">
+            <h1>The Visual <span class="highlight">Cryptography</span> Playground</h1>
+            <p>Understand encryption in real-time. Watch the characters shift, scramble, and lock before your eyes.</p>
+            <a href="tool.html" class="cta-button">Start Encrypting <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </header>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="feature-card">
+                <i class="fas fa-eye feature-icon"></i>
+                <h3>Real-time Visualization</h3>
+                <p>Don't just read the code. See the math happen step-by-step.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-cogs feature-icon"></i>
+                <h3>Multiple Algorithms</h3>
+                <p>Support for Caesar, Vigenère, and more. Switch instantly.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-code-branch feature-icon"></i>
+                <h3>Open Source</h3>
+                <p>Built for developers. Fork the repo and add your own ciphers.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Built with 💻 & 🔐 by <a href="#">[Jayesh Joshi]</a></p>
+        <p>Open Source Project for Cybersecurity Education</p>
+    </footer>
+
+</body>
+</html>
