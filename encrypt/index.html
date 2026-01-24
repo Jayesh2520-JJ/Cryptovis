@@ -3,158 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocol | Cryptographic Interface</title>
+    <title>CryptoVis | The Visual Cryptography Playground</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap');
-        
         body {
-            background-color: #0a0a0c;
-            color: #d1d1d6;
+            background-color: #030708;
+            background-image: radial-gradient(circle at 50% 50%, #0a1a15 0%, #030708 100%);
+            color: white;
             font-family: 'Inter', sans-serif;
         }
-
-        .interface-container {
-            background: #111114;
-            border: 1px solid #232326;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-        }
-
-        .mono { font-family: 'JetBrains Mono', monospace; }
-
-        /* Professional Dropdown Styling */
-        select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236366f1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1em;
-        }
-
-        .output-well {
-            background: #070708;
-            border: 1px solid #1c1c1f;
+        .glow-text {
+            text-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-8">
-
-    <div class="w-full max-w-4xl interface-container rounded-2xl overflow-hidden">
-        <div class="px-8 py-10 border-b border-[#232326] flex flex-col md:flex-row justify-between items-baseline gap-4">
-            <div>
-                <h1 class="text-2xl font-semibold tracking-tight text-white uppercase">Cryptographic <span class="text-indigo-500">Terminal</span></h1>
-                <p class="text-slate-500 text-sm mt-1">Standardized implementation of historical and modern primitives.</p>
-            </div>
-            
-            <div class="w-full md:w-72">
-                <label class="block text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-semibold">Algorithm Selection</label>
-                <select id="cipherSelect" class="w-full bg-[#1c1c1f] text-white border border-[#2d2d31] rounded-lg px-4 py-3 text-sm focus:border-indigo-500 outline-none transition-all cursor-pointer">
-                    <optgroup label="Classical / Substitution">
-                        <option value="caesar">Caesar Shift</option>
-                        <option value="latin">Latin Square</option>
-                    </optgroup>
-                    <optgroup label="Stream Primitives">
-                        <option value="rc4">RC4 Algorithm</option>
-                        <option value="seal">SEAL Primitive</option>
-                    </optgroup>
-                    <optgroup label="Standard Block Ciphers">
-                        <option value="lucifer">Lucifer (64-bit)</option>
-                        <option value="des">Data Encryption Standard</option>
-                        <option value="blowfish">Blowfish (Schneier)</option>
-                        <option value="idea">IDEA (International Data)</option>
-                        <option value="rc5">RC5 Variable Block</option>
-                        <option value="rijndael">Rijndael (AES)</option>
-                    </optgroup>
-                </select>
-            </div>
+<body class="min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center px-12 py-8">
+        <div class="text-2xl font-bold tracking-tighter">Crypto<span class="text-green-400">Vis</span></div>
+        <div class="flex gap-8 text-sm text-gray-400 items-center">
+            <a href="#" class="hover:text-white transition">About</a>
+            <a href="#" class="hover:text-white transition">Features</a>
+            <a href="#" class="hover:text-white transition flex items-center gap-1">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+            </a>
         </div>
+    </nav>
 
-        <div class="p-8 space-y-10">
-            <div class="space-y-4">
-                <div class="flex justify-between">
-                    <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Source Buffer</h3>
-                </div>
-                <textarea id="userInput" 
-                    class="w-full h-32 bg-transparent border border-[#232326] rounded-xl p-5 text-lg mono outline-none text-slate-200 focus:border-indigo-500/40 transition-all resize-none" 
-                    placeholder="Enter string for processing..."></textarea>
-            </div>
-
-            <div class="flex justify-center">
-                <button onclick="executeTransformation()" class="group relative px-12 py-4 bg-white text-black rounded-lg font-semibold text-sm uppercase tracking-widest transition-all hover:bg-indigo-500 hover:text-white active:scale-95">
-                    Execute Protocol
-                </button>
-            </div>
-
-            <div class="space-y-4">
-                <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Encoded Output Visualization</h3>
-                <div id="outputContainer" class="output-well w-full min-h-[160px] p-6 rounded-xl text-lg mono break-all leading-relaxed overflow-hidden border-l-4 border-indigo-500">
-                    <span class="text-slate-800 italic">Awaiting buffer initialization...</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="px-8 py-5 bg-[#070708] border-t border-[#232326] flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></div>
-                <span class="text-[10px] text-slate-500 font-medium uppercase tracking-tight">System Status: Operational</span>
-            </div>
-            <span class="text-[10px] text-slate-600 mono uppercase">Enc: UTF-8 / Standard</span>
-        </div>
-    </div>
-
-    <script>
-        function executeTransformation() {
-            const input = document.getElementById('userInput').value;
-            const cipher = document.getElementById('cipherSelect').value;
-            const container = document.getElementById('outputContainer');
-            
-            if (!input) return;
-
-            // Logic remains consistent with your previous request for accuracy
-            let result = "";
-            switch(cipher) {
-                case 'caesar': result = input.replace(/[a-z]/gi, c => String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 3) ? c : c - 26)); break;
-                case 'latin': result = btoa(input).split('').map(c => c.charCodeAt(0).toString(16)).join(' '); break;
-                case 'rc4': result = "0x" + [...Array(input.length*2)].map(() => Math.floor(Math.random()*16).toString(16)).join(''); break;
-                case 'seal': result = input.split('').map(c => (c.charCodeAt(0) ^ 0x55).toString(2)).join(''); break;
-                case 'lucifer': result = Array(input.length).fill(0).map(() => Math.floor(Math.random()*0xFFFF).toString(16)).join('-'); break;
-                case 'des': result = Array(2).fill(0).map(() => Math.random().toString(36).substring(2, 10)).join('-').toUpperCase(); break;
-                case 'blowfish': result = "$" + Math.random().toString(36).substring(7) + "$" + btoa(input).substring(0, 16); break;
-                case 'idea': result = input.split('').map(c => "U+" + (c.charCodeAt(0) + 400).toString(16)).join('+'); break;
-                case 'rc5': result = "R5-" + btoa(input).split('').map(x => x.charCodeAt(0)).join('.'); break;
-                case 'rijndael': result = Array(4).fill(0).map(() => Math.random().toString(16).substring(2, 10)).join(':'); break;
-            }
-
-            container.innerHTML = '';
-            const charSet = "0123456789ABCDEF"; // Use hex set for a cleaner professional look
-            
-            result.split('').forEach((char, i) => {
-                const span = document.createElement('span');
-                span.className = 'inline-block opacity-0 text-indigo-400';
-                span.innerText = charSet[Math.floor(Math.random() * charSet.length)];
-                container.appendChild(span);
-
-                const tl = gsap.timeline({ delay: i * 0.01 });
-                
-                tl.to(span, { opacity: 1, duration: 0.1 })
-                  .to(span, {
-                      innerText: charSet[Math.floor(Math.random() * charSet.length)],
-                      duration: 0.2,
-                      repeat: 1,
-                  })
-                  .to(span, {
-                      innerText: char,
-                      color: '#ffffff',
-                      duration: 0.2,
-                      onComplete: () => {
-                          if(i === result.length - 1) {
-                              gsap.to(".output-well span", { color: '#a1a1aa', duration: 1 });
-                          }
-                      }
-                  });
-            });
-        }
-    </script>
+    <main class="flex-grow flex flex-col items-center justify-center text-center px-4">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+            The Visual <span class="text-green-400 glow-text">Cryptography</span> Playground
+        </h1>
+        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+            Understand encryption in real-time. Watch the characters shift,<br class="hidden md:block"> scramble, and lock before your eyes.
+        </p>
+        
+        <a href="terminal.html" class="group flex items-center gap-2 px-8 py-3 rounded-full border border-green-900/50 bg-green-950/20 text-green-400 hover:bg-green-400 hover:text-black transition-all duration-300 font-medium">
+            Start Encrypting
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+        </a>
+    </main>
 </body>
 </html>
