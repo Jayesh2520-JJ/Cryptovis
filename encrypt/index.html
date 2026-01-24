@@ -38,72 +38,116 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-8">
+<body class="min-h-screen flex flex-col">
 
-    <div class="w-full max-w-4xl interface-container rounded-2xl overflow-hidden">
-        <div class="px-8 py-10 border-b border-[#232326] flex flex-col md:flex-row justify-between items-baseline gap-4">
-            <div>
-                <h1 class="text-2xl font-semibold tracking-tight text-white uppercase">Cryptographic <span class="text-indigo-500">Terminal</span></h1>
-                <p class="text-slate-500 text-sm mt-1">Standardized implementation of historical and modern primitives.</p>
-            </div>
-            
-            <div class="w-full md:w-72">
-                <label class="block text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-semibold">Algorithm Selection</label>
-                <select id="cipherSelect" class="w-full bg-[#1c1c1f] text-white border border-[#2d2d31] rounded-lg px-4 py-3 text-sm focus:border-indigo-500 outline-none transition-all cursor-pointer">
-                    <optgroup label="Classical / Substitution">
-                        <option value="caesar">Caesar Shift</option>
-                        <option value="latin">Latin Square</option>
-                    </optgroup>
-                    <optgroup label="Stream Primitives">
-                        <option value="rc4">RC4 Algorithm</option>
-                        <option value="seal">SEAL Primitive</option>
-                    </optgroup>
-                    <optgroup label="Standard Block Ciphers">
-                        <option value="lucifer">Lucifer (64-bit)</option>
-                        <option value="des">Data Encryption Standard</option>
-                        <option value="blowfish">Blowfish (Schneier)</option>
-                        <option value="idea">IDEA (International Data)</option>
-                        <option value="rc5">RC5 Variable Block</option>
-                        <option value="rijndael">Rijndael (AES)</option>
-                    </optgroup>
-                </select>
-            </div>
+    <nav class="flex justify-between items-center px-12 py-8 w-full">
+        <a href="index.html" class="text-2xl font-bold tracking-tighter hover:opacity-80 transition text-white">
+            Crypto<span class="text-green-400">Vis</span>
+        </a>
+        <div class="flex gap-8 text-sm text-gray-400 items-center">
+            <a href="index.html" class="hover:text-white transition">Home</a>
+            <a href="#" class="hover:text-white transition">About</a>
+            <a href="#" class="hover:text-white transition flex items-center gap-1">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+            </a>
         </div>
+    </nav>
 
-        <div class="p-8 space-y-10">
-            <div class="space-y-4">
-                <div class="flex justify-between">
-                    <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Source Buffer</h3>
+    <main class="flex-grow flex items-center justify-center p-8">
+        <div class="w-full max-w-4xl interface-container rounded-2xl overflow-hidden">
+            <div class="px-8 py-10 border-b border-[#232326] flex flex-col md:flex-row justify-between items-baseline gap-4">
+                <div>
+                    <h1 class="text-2xl font-semibold tracking-tight text-white uppercase">Cryptographic <span class="text-indigo-500">Terminal</span></h1>
+                    <p class="text-slate-500 text-sm mt-1">Standardized implementation of historical and modern primitives.</p>
                 </div>
-                <textarea id="userInput" 
-                    class="w-full h-32 bg-transparent border border-[#232326] rounded-xl p-5 text-lg mono outline-none text-slate-200 focus:border-indigo-500/40 transition-all resize-none" 
-                    placeholder="Enter string for processing..."></textarea>
-            </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+                    <div class="w-full md:w-72">
+                        <label class="block text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-semibold">Algorithm Selection</label>
+                        <select id="cipherSelect" onchange="toggleCaesarOptions()" class="w-full bg-[#1c1c1f] text-white border border-[#2d2d31] rounded-lg px-4 py-3 text-sm focus:border-indigo-500 outline-none transition-all cursor-pointer">
+                            <optgroup label="Classical / Substitution">
+                                <option value="caesar">Caesar Shift</option>
+                                <option value="vigenere">Vigenère Cipher</option>
+                                <option value="vernam">Vernam (OTP)</option>
+                                <option value="latin">Latin Square</option>
+                            </optgroup>
+                            <optgroup label="Stream Primitives">
+                                <option value="rc4">RC4 Algorithm</option>
+                                <option value="seal">SEAL Primitive</option>
+                            </optgroup>
+                            <optgroup label="Standard Block Ciphers">
+                                <option value="lucifer">Lucifer (64-bit)</option>
+                                <option value="des">Data Encryption Standard</option>
+                                <option value="blowfish">Blowfish (Schneier)</option>
+                                <option value="idea">IDEA (International Data)</option>
+                                <option value="rc5">RC5 Variable Block</option>
+                                <option value="rijndael">Rijndael (AES)</option>
+                            </optgroup>
+                        </select>
+                    </div>
 
-            <div class="flex justify-center">
-                <button onclick="executeTransformation()" class="group relative px-12 py-4 bg-white text-black rounded-lg font-semibold text-sm uppercase tracking-widest transition-all hover:bg-indigo-500 hover:text-white active:scale-95">
-                    Execute Protocol
-                </button>
-            </div>
-
-            <div class="space-y-4">
-                <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Encoded Output Visualization</h3>
-                <div id="outputContainer" class="output-well w-full min-h-[160px] p-6 rounded-xl text-lg mono break-all leading-relaxed overflow-hidden border-l-4 border-indigo-500">
-                    <span class="text-slate-800 italic">Awaiting buffer initialization...</span>
+                    <div id="caesarShiftContainer" class="w-full md:w-32">
+                        <label class="block text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-semibold">Shift Value</label>
+                        <select id="caesarShift" class="w-full bg-[#1c1c1f] text-white border border-[#2d2d31] rounded-lg px-4 py-3 text-sm focus:border-indigo-500 outline-none transition-all cursor-pointer">
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                            <option value="3" selected>+3</option>
+                            <option value="4">+4</option>
+                            <option value="5">+5</option>
+                            <option value="6">+6</option>
+                            <option value="7">+7</option>
+                            <option value="8">+8</option>
+                            <option value="9">+9</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="px-8 py-5 bg-[#070708] border-t border-[#232326] flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></div>
-                <span class="text-[10px] text-slate-500 font-medium uppercase tracking-tight">System Status: Operational</span>
+            <div class="p-8 space-y-10">
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Source Buffer</h3>
+                    </div>
+                    <textarea id="userInput" 
+                        class="w-full h-32 bg-transparent border border-[#232326] rounded-xl p-5 text-lg mono outline-none text-slate-200 focus:border-indigo-500/40 transition-all resize-none" 
+                        placeholder="Enter string for processing..."></textarea>
+                </div>
+
+                <div class="flex justify-center">
+                    <button onclick="executeTransformation()" class="group relative px-12 py-4 bg-white text-black rounded-lg font-semibold text-sm uppercase tracking-widest transition-all hover:bg-indigo-500 hover:text-white active:scale-95">
+                        Execute Protocol
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Encoded Output Visualization</h3>
+                    <div id="outputContainer" class="output-well w-full min-h-[160px] p-6 rounded-xl text-lg mono break-all leading-relaxed overflow-hidden border-l-4 border-indigo-500">
+                        <span class="text-slate-800 italic">Awaiting buffer initialization...</span>
+                    </div>
+                </div>
             </div>
-            <span class="text-[10px] text-slate-600 mono uppercase">Enc: UTF-8 / Standard</span>
+
+            <div class="px-8 py-5 bg-[#070708] border-t border-[#232326] flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></div>
+                    <span class="text-[10px] text-slate-500 font-medium uppercase tracking-tight">System Status: Operational</span>
+                </div>
+                <span class="text-[10px] text-slate-600 mono uppercase">Enc: UTF-8 / Standard</span>
+            </div>
         </div>
-    </div>
+    </main>
 
     <script>
+        function toggleCaesarOptions() {
+            const cipher = document.getElementById('cipherSelect').value;
+            const container = document.getElementById('caesarShiftContainer');
+            container.style.display = (cipher === 'caesar') ? 'block' : 'none';
+        }
+
+        // Initialize visibility on load
+        toggleCaesarOptions();
+
         function executeTransformation() {
             const input = document.getElementById('userInput').value;
             const cipher = document.getElementById('cipherSelect').value;
@@ -113,7 +157,31 @@
 
             let result = "";
             switch(cipher) {
-                case 'caesar': result = input.replace(/[a-z]/gi, c => String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 3) ? c : c - 26)); break;
+                case 'caesar': 
+                    const shift = parseInt(document.getElementById('caesarShift').value);
+                    result = input.replace(/[a-z]/gi, c => {
+                        const charCode = c.charCodeAt(0);
+                        const base = (charCode <= 90) ? 65 : 97;
+                        return String.fromCharCode(((charCode - base + shift) % 26) + base);
+                    }); 
+                    break;
+                case 'vigenere': 
+                    const keyV = "KEY";
+                    result = input.split('').map((char, i) => {
+                        if(!/[a-zA-Z]/.test(char)) return char;
+                        const base = char <= 'Z' ? 65 : 97;
+                        const k = keyV[(i % keyV.length)].toUpperCase().charCodeAt(0) - 65;
+                        return String.fromCharCode(((char.charCodeAt(0) - base + k) % 26) + base);
+                    }).join('');
+                    break;
+                case 'vernam':
+                    result = input.split('').map(char => {
+                        const randomKey = Math.floor(Math.random() * 26);
+                        const base = char <= 'Z' ? 65 : 97;
+                        if(!/[a-zA-Z]/.test(char)) return char;
+                        return String.fromCharCode(((char.charCodeAt(0) - base + randomKey) % 26) + base);
+                    }).join('');
+                    break;
                 case 'latin': result = btoa(input).split('').map(c => c.charCodeAt(0).toString(16)).join(' '); break;
                 case 'rc4': result = "0x" + [...Array(input.length*2)].map(() => Math.floor(Math.random()*16).toString(16)).join(''); break;
                 case 'seal': result = input.split('').map(c => (c.charCodeAt(0) ^ 0x55).toString(2)).join(''); break;
