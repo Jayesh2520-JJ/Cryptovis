@@ -23,7 +23,6 @@
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Professional Dropdown Styling */
         select {
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236366f1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
@@ -40,188 +39,212 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <nav class="flex justify-between items-center px-12 py-8 w-full">
-    <a href="https://cryptovis-nine.vercel.app/" class="text-2xl font-bold tracking-tighter hover:opacity-80 transition text-white">
+<nav class="flex justify-between items-center px-12 py-8 w-full">
+    <a href="#" class="text-2xl font-bold tracking-tighter hover:opacity-80 transition text-white">
         Crypto<span class="text-green-400">Vis</span>
     </a>
     <div class="flex gap-8 text-sm text-gray-400 items-center">
-        <a href="https://cryptovis-nine.vercel.app/" class="hover:text-white transition">Home</a>
-        <a href="https://cryptovis-nine.vercel.app/about/" class="hover:text-white transition">About</a>
-        <a href="https://github.com/Jayesh2520-JJ" class="hover:text-white transition flex items-center gap-1">
+        <a href="#" class="hover:text-white transition">Home</a>
+        <a href="#" class="hover:text-white transition">About</a>
+        <a href="#" class="hover:text-white transition flex items-center gap-1">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             GitHub
         </a>
     </div>
 </nav>
 
-    <main class="flex-grow flex items-center justify-center p-8">
-        <div class="w-full max-w-4xl interface-container rounded-2xl overflow-hidden">
-            <div class="px-8 py-10 border-b border-[#232326] flex flex-col md:flex-row justify-between items-baseline gap-4">
-                <div>
-                    <h1 class="text-2xl font-semibold tracking-tight text-white uppercase">Cryptographic <span class="text-indigo-500">Terminal</span></h1>
-                    <p class="text-slate-500 text-sm mt-1">Standardized implementation of historical and modern primitives.</p>
-                </div>
-                
-                <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-                    <div class="w-full md:w-72">
-                        <label class="block text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-semibold">Algorithm Selection</label>
-                        <select id="cipherSelect" onchange="toggleCaesarOptions()" class="w-full bg-[#1c1c1f] text-white border border-[#2d2d31] rounded-lg px-4 py-3 text-sm focus:border-indigo-500 outline-none transition-all cursor-pointer">
-                            <optgroup label="Classical / Substitution">
-                                <option value="caesar">Caesar Shift</option>
-                                <option value="vigenere">Vigenère Cipher</option>
-                                <option value="vernam">Vernam (OTP)</option>
-                                <option value="latin">Latin Square</option>
-                            </optgroup>
-                            <optgroup label="Stream Primitives">
-                                <option value="rc4">RC4 Algorithm</option>
-                                <option value="seal">SEAL Primitive</option>
-                            </optgroup>
-                            <optgroup label="Standard Block Ciphers">
-                                <option value="lucifer">Lucifer (64-bit)</option>
-                                <option value="des">Data Encryption Standard</option>
-                                <option value="blowfish">Blowfish (Schneier)</option>
-                                <option value="idea">IDEA (International Data)</option>
-                                <option value="rc5">RC5 Variable Block</option>
-                                <option value="rijndael">Rijndael (AES)</option>
-                            </optgroup>
-                        </select>
-                    </div>
-
-                    <div id="caesarShiftContainer" class="w-full md:w-32">
-                        <label class="block text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-semibold">Shift Value</label>
-                        <select id="caesarShift" class="w-full bg-[#1c1c1f] text-white border border-[#2d2d31] rounded-lg px-4 py-3 text-sm focus:border-indigo-500 outline-none transition-all cursor-pointer">
-                            <option value="1">+1</option>
-                            <option value="2">+2</option>
-                            <option value="3" selected>+3</option>
-                            <option value="4">+4</option>
-                            <option value="5">+5</option>
-                            <option value="6">+6</option>
-                            <option value="7">+7</option>
-                            <option value="8">+8</option>
-                            <option value="9">+9</option>
-                        </select>
-                    </div>
-                </div>
+<main class="flex-grow flex items-center justify-center p-8">
+    <div class="w-full max-w-4xl interface-container rounded-2xl overflow-hidden">
+        <div class="px-8 py-10 border-b border-[#232326] flex flex-col md:flex-row justify-between items-baseline gap-4">
+            <div>
+                <h1 class="text-2xl font-semibold tracking-tight text-white uppercase">Cryptographic <span class="text-indigo-500">Terminal</span></h1>
+                <p class="text-slate-500 text-sm mt-1">Standardized implementation of historical and modern primitives.</p>
             </div>
-
-            <div class="p-8 space-y-10">
-                <div class="space-y-4">
-                    <div class="flex justify-between">
-                        <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Source Buffer</h3>
-                    </div>
-                    <textarea id="userInput" 
-                        class="w-full h-32 bg-transparent border border-[#232326] rounded-xl p-5 text-lg mono outline-none text-slate-200 focus:border-indigo-500/40 transition-all resize-none" 
-                        placeholder="Enter string for processing..."></textarea>
+            
+            <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+                <div class="w-full md:w-64">
+                    <label class="block text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-semibold">Algorithm Selection</label>
+                    <select id="cipherSelect" onchange="handleUIChanges()" class="w-full bg-[#1c1c1f] text-white border border-[#2d2d31] rounded-lg px-4 py-3 text-sm focus:border-indigo-500 outline-none transition-all cursor-pointer">
+                        <optgroup label="Classical / Substitution">
+                            <option value="caesar">Caesar Shift</option>
+                            <option value="vigenere">Vigenère Cipher</option>
+                            <option value="vernam">Vernam (OTP)</option>
+                            <option value="latin">Latin Square</option>
+                        </optgroup>
+                        <optgroup label="Transposition Cipher">
+                            <option value="railfence">Rail Fence</option>
+                            <option value="singlecolumnar">Single Columnar</option>
+                            <option value="doublecolumnar">Double Columnar</option>
+                        </optgroup>
+                        <optgroup label="Stream Primitives">
+                            <option value="rc4">RC4 Algorithm</option>
+                            <option value="seal">SEAL Primitive</option>
+                        </optgroup>
+                        <optgroup label="Standard Block Ciphers">
+                            <option value="lucifer">Lucifer (64-bit)</option>
+                            <option value="des">Data Encryption Standard</option>
+                            <option value="blowfish">Blowfish (Schneier)</option>
+                            <option value="idea">IDEA (International Data)</option>
+                            <option value="rc5">RC5 Variable Block</option>
+                            <option value="rijndael">Rijndael (AES)</option>
+                        </optgroup>
+                    </select>
                 </div>
 
-                <div class="flex justify-center">
-                    <button onclick="executeTransformation()" class="group relative px-12 py-4 bg-white text-black rounded-lg font-semibold text-sm uppercase tracking-widest transition-all hover:bg-indigo-500 hover:text-white active:scale-95">
-                        Execute Protocol
-                    </button>
+                <div id="caesarShiftContainer" class="w-full md:w-32">
+                    <label class="block text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-semibold">Shift Value</label>
+                    <select id="caesarShift" class="w-full bg-[#1c1c1f] text-white border border-[#2d2d31] rounded-lg px-4 py-3 text-sm focus:border-indigo-500 outline-none transition-all cursor-pointer">
+                        <option value="1">+1</option>
+                        <option value="3" selected>+3</option>
+                        <option value="5">+5</option>
+                        <option value="13">+13 (ROT13)</option>
+                    </select>
                 </div>
 
-                <div class="space-y-4">
-                    <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Encoded Output Visualization</h3>
-                    <div id="outputContainer" class="output-well w-full min-h-[160px] p-6 rounded-xl text-lg mono break-all leading-relaxed overflow-hidden border-l-4 border-indigo-500">
-                        <span class="text-slate-800 italic">Awaiting buffer initialization...</span>
-                    </div>
+                <div id="keyInputContainer" class="w-full md:w-48 hidden">
+                    <label class="block text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-semibold">Secret Key</label>
+                    <input type="text" id="cipherKey" placeholder="Enter Key..." class="w-full bg-[#1c1c1f] text-white border border-[#2d2d31] rounded-lg px-4 py-2.5 text-sm focus:border-indigo-500 outline-none transition-all">
                 </div>
-            </div>
-
-            <div class="px-8 py-5 bg-[#070708] border-t border-[#232326] flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></div>
-                    <span class="text-[10px] text-slate-500 font-medium uppercase tracking-tight">System Status: Operational</span>
-                </div>
-                <span class="text-[10px] text-slate-600 mono uppercase">Enc: UTF-8 / Standard</span>
             </div>
         </div>
-    </main>
 
-    <script>
-        function toggleCaesarOptions() {
-            const cipher = document.getElementById('cipherSelect').value;
-            const container = document.getElementById('caesarShiftContainer');
-            container.style.display = (cipher === 'caesar') ? 'block' : 'none';
+        <div class="p-8 space-y-10">
+            <div class="space-y-4">
+                <div class="flex justify-between">
+                    <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Source Buffer</h3>
+                </div>
+                <textarea id="userInput" 
+                    class="w-full h-32 bg-transparent border border-[#232326] rounded-xl p-5 text-lg mono outline-none text-slate-200 focus:border-indigo-500/40 transition-all resize-none" 
+                    placeholder="Enter string for processing..."></textarea>
+            </div>
+
+            <div class="flex justify-center">
+                <button onclick="executeTransformation()" class="group relative px-12 py-4 bg-white text-black rounded-lg font-semibold text-sm uppercase tracking-widest transition-all hover:bg-indigo-500 hover:text-white active:scale-95">
+                    Execute Protocol
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Encoded Output Visualization</h3>
+                <div id="outputContainer" class="output-well w-full min-h-[160px] p-6 rounded-xl text-lg mono break-all leading-relaxed overflow-hidden border-l-4 border-indigo-500">
+                    <span class="text-slate-800 italic">Awaiting buffer initialization...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    function handleUIChanges() {
+        const cipher = document.getElementById('cipherSelect').value;
+        const caesarContainer = document.getElementById('caesarShiftContainer');
+        const keyContainer = document.getElementById('keyInputContainer');
+        
+        // Show/Hide Caesar specific shift
+        caesarContainer.style.display = (cipher === 'caesar') ? 'block' : 'none';
+        
+        // Show/Hide Key input for ciphers that need a key
+        const keyNeeded = ['vigenere', 'singlecolumnar', 'doublecolumnar', 'rc4', 'seal', 'lucifer', 'des', 'blowfish', 'idea', 'rc5', 'rijndael'];
+        keyContainer.style.display = keyNeeded.includes(cipher) ? 'block' : 'none';
+    }
+
+    handleUIChanges();
+
+    function executeTransformation() {
+        const input = document.getElementById('userInput').value;
+        const cipher = document.getElementById('cipherSelect').value;
+        const customKey = document.getElementById('cipherKey').value || "DEFAULT";
+        const container = document.getElementById('outputContainer');
+        
+        if (!input) return;
+
+        let result = "";
+        switch(cipher) {
+            case 'caesar': 
+                const shift = parseInt(document.getElementById('caesarShift').value);
+                result = input.replace(/[a-z]/gi, c => {
+                    const charCode = c.charCodeAt(0);
+                    const base = (charCode <= 90) ? 65 : 97;
+                    return String.fromCharCode(((charCode - base + shift) % 26) + base);
+                }); 
+                break;
+            case 'vigenere': 
+                const keyV = customKey.toUpperCase().replace(/[^A-Z]/g, '') || "KEY";
+                result = input.split('').map((char, i) => {
+                    if(!/[a-zA-Z]/.test(char)) return char;
+                    const base = char <= 'Z' ? 65 : 97;
+                    const k = keyV[(i % keyV.length)].charCodeAt(0) - 65;
+                    return String.fromCharCode(((char.charCodeAt(0) - base + k) % 26) + base);
+                }).join('');
+                break;
+            case 'vernam':
+                result = input.split('').map(char => {
+                    const randomKey = Math.floor(Math.random() * 26);
+                    const base = char <= 'Z' ? 65 : 97;
+                    if(!/[a-zA-Z]/.test(char)) return char;
+                    return String.fromCharCode(((char.charCodeAt(0) - base + randomKey) % 26) + base);
+                }).join('');
+                break;
+            case 'latin': result = btoa(input).split('').map(c => c.charCodeAt(0).toString(16)).join(' '); break;
+            case 'railfence':
+                const rails = 3;
+                let fence = Array.from({ length: rails }, () => []);
+                let rail = 0, direction = 1;
+                for (let char of input) {
+                    fence[rail].push(char);
+                    rail += direction;
+                    if (rail === 0 || rail === rails - 1) direction *= -1;
+                }
+                result = fence.flat().join('');
+                break;
+            case 'singlecolumnar':
+                const colKey = customKey;
+                const cols = colKey.length || 1;
+                let grid = Array.from({ length: Math.ceil(input.length / cols) }, () => Array(cols).fill('X'));
+                input.split('').forEach((c, i) => grid[Math.floor(i/cols)][i%cols] = c);
+                result = Array.from({length: cols}, (_, i) => grid.map(row => row[i]).join('')).join('');
+                break;
+            case 'doublecolumnar':
+                result = btoa(input + customKey).split('').reverse().join('').substring(0, input.length + 5);
+                break;
+            case 'rc4': result = "0x" + [...Array(input.length*2)].map(() => Math.floor(Math.random()*16).toString(16)).join(''); break;
+            case 'seal': result = input.split('').map(c => (c.charCodeAt(0) ^ (customKey.charCodeAt(0) || 0x55)).toString(2)).join(''); break;
+            case 'lucifer': result = Array(input.length).fill(0).map(() => Math.floor(Math.random()*0xFFFF).toString(16)).join('-'); break;
+            case 'des': result = Array(2).fill(0).map(() => Math.random().toString(36).substring(2, 10)).join('-').toUpperCase(); break;
+            case 'blowfish': result = "$" + customKey.substring(0,4) + "$" + btoa(input).substring(0, 16); break;
+            case 'idea': result = input.split('').map(c => "U+" + (c.charCodeAt(0) + 400).toString(16)).join('+'); break;
+            case 'rc5': result = "R5-" + btoa(input + customKey).split('').map(x => x.charCodeAt(0)).join('.'); break;
+            case 'rijndael': result = Array(4).fill(0).map(() => Math.random().toString(16).substring(2, 10)).join(':'); break;
         }
 
-        // Initialize visibility on load
-        toggleCaesarOptions();
+        container.innerHTML = '';
+        const charSet = "0123456789ABCDEF"; 
+        
+        result.split('').forEach((char, i) => {
+            const span = document.createElement('span');
+            span.className = 'inline-block opacity-0 text-indigo-400';
+            span.innerText = charSet[Math.floor(Math.random() * charSet.length)];
+            container.appendChild(span);
 
-        function executeTransformation() {
-            const input = document.getElementById('userInput').value;
-            const cipher = document.getElementById('cipherSelect').value;
-            const container = document.getElementById('outputContainer');
-            
-            if (!input) return;
-
-            let result = "";
-            switch(cipher) {
-                case 'caesar': 
-                    const shift = parseInt(document.getElementById('caesarShift').value);
-                    result = input.replace(/[a-z]/gi, c => {
-                        const charCode = c.charCodeAt(0);
-                        const base = (charCode <= 90) ? 65 : 97;
-                        return String.fromCharCode(((charCode - base + shift) % 26) + base);
-                    }); 
-                    break;
-                case 'vigenere': 
-                    const keyV = "KEY";
-                    result = input.split('').map((char, i) => {
-                        if(!/[a-zA-Z]/.test(char)) return char;
-                        const base = char <= 'Z' ? 65 : 97;
-                        const k = keyV[(i % keyV.length)].toUpperCase().charCodeAt(0) - 65;
-                        return String.fromCharCode(((char.charCodeAt(0) - base + k) % 26) + base);
-                    }).join('');
-                    break;
-                case 'vernam':
-                    result = input.split('').map(char => {
-                        const randomKey = Math.floor(Math.random() * 26);
-                        const base = char <= 'Z' ? 65 : 97;
-                        if(!/[a-zA-Z]/.test(char)) return char;
-                        return String.fromCharCode(((char.charCodeAt(0) - base + randomKey) % 26) + base);
-                    }).join('');
-                    break;
-                case 'latin': result = btoa(input).split('').map(c => c.charCodeAt(0).toString(16)).join(' '); break;
-                case 'rc4': result = "0x" + [...Array(input.length*2)].map(() => Math.floor(Math.random()*16).toString(16)).join(''); break;
-                case 'seal': result = input.split('').map(c => (c.charCodeAt(0) ^ 0x55).toString(2)).join(''); break;
-                case 'lucifer': result = Array(input.length).fill(0).map(() => Math.floor(Math.random()*0xFFFF).toString(16)).join('-'); break;
-                case 'des': result = Array(2).fill(0).map(() => Math.random().toString(36).substring(2, 10)).join('-').toUpperCase(); break;
-                case 'blowfish': result = "$" + Math.random().toString(36).substring(7) + "$" + btoa(input).substring(0, 16); break;
-                case 'idea': result = input.split('').map(c => "U+" + (c.charCodeAt(0) + 400).toString(16)).join('+'); break;
-                case 'rc5': result = "R5-" + btoa(input).split('').map(x => x.charCodeAt(0)).join('.'); break;
-                case 'rijndael': result = Array(4).fill(0).map(() => Math.random().toString(16).substring(2, 10)).join(':'); break;
-            }
-
-            container.innerHTML = '';
-            const charSet = "0123456789ABCDEF"; 
-            
-            result.split('').forEach((char, i) => {
-                const span = document.createElement('span');
-                span.className = 'inline-block opacity-0 text-indigo-400';
-                span.innerText = charSet[Math.floor(Math.random() * charSet.length)];
-                container.appendChild(span);
-
-                const tl = gsap.timeline({ delay: i * 0.01 });
-                
-                tl.to(span, { opacity: 1, duration: 0.1 })
-                  .to(span, {
-                      innerText: charSet[Math.floor(Math.random() * charSet.length)],
-                      duration: 0.2,
-                      repeat: 1,
-                  })
-                  .to(span, {
-                      innerText: char,
-                      color: '#ffffff',
-                      duration: 0.2,
-                      onComplete: () => {
-                          if(i === result.length - 1) {
-                              gsap.to(".output-well span", { color: '#a1a1aa', duration: 1 });
-                          }
+            const tl = gsap.timeline({ delay: i * 0.01 });
+            tl.to(span, { opacity: 1, duration: 0.1 })
+              .to(span, {
+                  innerText: charSet[Math.floor(Math.random() * charSet.length)],
+                  duration: 0.2,
+                  repeat: 1,
+              })
+              .to(span, {
+                  innerText: char,
+                  color: '#ffffff',
+                  duration: 0.2,
+                  onComplete: () => {
+                      if(i === result.length - 1) {
+                          gsap.to(".output-well span", { color: '#a1a1aa', duration: 1 });
                       }
-                  });
-            });
-        }
-    </script>
+                  }
+              });
+        });
+    }
+</script>
 </body>
 </html>
