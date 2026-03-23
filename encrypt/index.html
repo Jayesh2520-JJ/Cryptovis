@@ -35,6 +35,11 @@
             background: #070708;
             border: 1px solid #1c1c1f;
         }
+
+        .description-box {
+            background: #0d0d10;
+            border: 1px solid #1c1c1f;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -44,9 +49,9 @@
         Crypto<span class="text-green-400">Vis</span>
     </a>
     <div class="flex gap-8 text-sm text-gray-400 items-center">
-        <a href="https://cryptovis-nine.vercel.app/" class="hover:text-white transition">Home</a>
-        <a href="https://cryptovis-nine.vercel.app/about/" class="hover:text-white transition">About</a>
-        <a href="https://github.com/Jayesh2520-JJ" class="hover:text-white transition flex items-center gap-1">
+        <a href="#" class="hover:text-white transition">Home</a>
+        <a href="#" class="hover:text-white transition">About</a>
+        <a href="#" class="hover:text-white transition flex items-center gap-1">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             GitHub
         </a>
@@ -54,7 +59,7 @@
 </nav>
 
 <main class="flex-grow flex items-center justify-center p-8">
-    <div class="w-full max-w-4xl interface-container rounded-2xl overflow-hidden">
+    <div class="w-full max-w-6xl interface-container rounded-2xl overflow-hidden">
         <div class="px-8 py-10 border-b border-[#232326] flex flex-col md:flex-row justify-between items-baseline gap-4">
             <div>
                 <h1 class="text-2xl font-semibold tracking-tight text-white uppercase">Cryptographic <span class="text-indigo-500">Terminal</span></h1>
@@ -108,26 +113,36 @@
             </div>
         </div>
 
-        <div class="p-8 space-y-10">
-            <div class="space-y-4">
-                <div class="flex justify-between">
+        <div class="flex flex-col lg:flex-row">
+            <div class="lg:w-2/3 p-8 space-y-8 border-r border-[#232326]">
+                <div class="space-y-4">
                     <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Source Buffer</h3>
+                    <textarea id="userInput" 
+                        class="w-full h-32 bg-transparent border border-[#232326] rounded-xl p-5 text-lg mono outline-none text-slate-200 focus:border-indigo-500/40 transition-all resize-none" 
+                        placeholder="Enter string for processing..."></textarea>
                 </div>
-                <textarea id="userInput" 
-                    class="w-full h-32 bg-transparent border border-[#232326] rounded-xl p-5 text-lg mono outline-none text-slate-200 focus:border-indigo-500/40 transition-all resize-none" 
-                    placeholder="Enter string for processing..."></textarea>
+
+                <div class="flex justify-center">
+                    <button onclick="executeTransformation()" class="group relative px-12 py-4 bg-white text-black rounded-lg font-semibold text-sm uppercase tracking-widest transition-all hover:bg-indigo-500 hover:text-white active:scale-95">
+                        Execute Protocol
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Encoded Output Visualization</h3>
+                    <div id="outputContainer" class="output-well w-full min-h-[140px] p-6 rounded-xl text-lg mono break-all leading-relaxed overflow-hidden border-l-4 border-indigo-500">
+                        <span class="text-slate-800 italic">Awaiting buffer initialization...</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="flex justify-center">
-                <button onclick="executeTransformation()" class="group relative px-12 py-4 bg-white text-black rounded-lg font-semibold text-sm uppercase tracking-widest transition-all hover:bg-indigo-500 hover:text-white active:scale-95">
-                    Execute Protocol
-                </button>
-            </div>
-
-            <div class="space-y-4">
-                <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Encoded Output Visualization</h3>
-                <div id="outputContainer" class="output-well w-full min-h-[160px] p-6 rounded-xl text-lg mono break-all leading-relaxed overflow-hidden border-l-4 border-indigo-500">
-                    <span class="text-slate-800 italic">Awaiting buffer initialization...</span>
+            <div class="lg:w-1/3 p-8 bg-[#0d0d10]/50">
+                <h3 class="text-[11px] font-bold text-indigo-400 uppercase tracking-widest mb-4">Protocol Intelligence</h3>
+                <div id="algoDescription" class="description-box p-6 rounded-xl border border-[#232326] min-h-[400px]">
+                    <h4 id="descTitle" class="text-white font-semibold text-lg mb-3">Caesar Shift</h4>
+                    <p id="descBody" class="text-sm text-slate-400 leading-relaxed">
+                        The Caesar cipher is one of the simplest and most widely known encryption techniques. It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.
+                    </p>
                 </div>
             </div>
         </div>
@@ -135,13 +150,81 @@
 </main>
 
 <script>
+    const descriptions = {
+        caesar: {
+            title: "Caesar Shift",
+            text: "A substitution cipher where each letter in the plaintext is shifted a certain number of places down the alphabet. Named after Julius Caesar, who used it for private correspondence."
+        },
+        vigenere: {
+            title: "Vigenère Cipher",
+            text: "A method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It is a polyalphabetic substitution cipher."
+        },
+        vernam: {
+            title: "Vernam (OTP)",
+            text: "The One-Time Pad is an unbreakable encryption technique that requires a pre-shared key of the same length as the message. It uses XOR logic to ensure perfect secrecy."
+        },
+        latin: {
+            title: "Latin Square",
+            text: "A mathematical construct used in cryptography where symbols occur exactly once in each row and column. Forms the basis for many modern block cipher structures."
+        },
+        railfence: {
+            title: "Rail Fence Cipher",
+            text: "A form of transposition cipher that writes the message in a zigzag pattern on imaginary 'rails' and then reads it off row by row."
+        },
+        singlecolumnar: {
+            title: "Single Columnar",
+            text: "A transposition cipher where the message is written out in rows of a fixed length, and then read out column by column, usually guided by a keyword."
+        },
+        doublecolumnar: {
+            title: "Double Columnar",
+            text: "A more secure version of the columnar transposition, where the transposition process is applied twice to the ciphertext."
+        },
+        rc4: {
+            title: "RC4 Algorithm",
+            text: "A stream cipher designed by Ron Rivest. While simple and fast, it has multiple vulnerabilities and is now considered legacy."
+        },
+        seal: {
+            title: "SEAL Primitive",
+            text: "Software-optimized Encryption Algorithm. It is a fast stream cipher designed for high-performance software implementations."
+        },
+        lucifer: {
+            title: "Lucifer (64-bit)",
+            text: "The precursor to DES, developed by IBM. It was one of the first civil block ciphers and introduced the Feistel network structure."
+        },
+        des: {
+            title: "Data Encryption Standard",
+            text: "A symmetric-key block cipher which was highly influential in the advancement of modern cryptography. Now replaced by AES due to small key size."
+        },
+        blowfish: {
+            title: "Blowfish",
+            text: "A symmetric-key block cipher designed by Bruce Schneier. It was intended as a fast, free alternative to existing encryption algorithms."
+        },
+        idea: {
+            title: "IDEA",
+            text: "International Data Encryption Algorithm. It operates on 64-bit blocks using a 128-bit key and was popular in early versions of PGP."
+        },
+        rc5: {
+            title: "RC5 Variable Block",
+            text: "A fast block cipher notable for its simplicity. It uses data-dependent rotations and has variable block and key sizes."
+        },
+        rijndael: {
+            title: "Rijndael (AES)",
+            text: "The Advanced Encryption Standard. It is a subset of the Rijndael block cipher and is the current global standard for secure data encryption."
+        }
+    };
+
     function handleUIChanges() {
         const cipher = document.getElementById('cipherSelect').value;
         const caesarContainer = document.getElementById('caesarShiftContainer');
         const keyContainer = document.getElementById('keyInputContainer');
         
+        // Update Side Description
+        const desc = descriptions[cipher];
+        document.getElementById('descTitle').innerText = desc.title;
+        document.getElementById('descBody').innerText = desc.text;
+
+        // Update Visibility
         caesarContainer.style.display = (cipher === 'caesar') ? 'block' : 'none';
-        
         const keyNeeded = ['vigenere', 'singlecolumnar', 'doublecolumnar', 'rc4', 'seal', 'lucifer', 'des', 'blowfish', 'idea', 'rc5', 'rijndael'];
         keyContainer.style.display = keyNeeded.includes(cipher) ? 'block' : 'none';
     }
